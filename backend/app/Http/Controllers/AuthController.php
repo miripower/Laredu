@@ -69,7 +69,7 @@ class AuthController extends Controller
             'message' => 'Logout successful'
         ], 200);
     }
-    
+
     /**
      * Get current user (Obtener datos del usuario autenticado)
      */
@@ -77,6 +77,26 @@ class AuthController extends Controller
     {
         return response()->json([
             'user' => $request->user()
+        ], 200);
+    }
+
+    /**
+     * Delete a user (Eliminar un usuario)
+     */
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'User not found'
+            ], 404);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'User deleted successfully'
         ], 200);
     }
 }

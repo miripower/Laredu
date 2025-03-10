@@ -18,6 +18,7 @@ Route::post('/login', [AuthController::class, 'login']); // Login
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']); // Logout
     Route::get('/me', [AuthController::class, 'me']); // Obtener datos del usuario autenticado
+    Route::delete('/users/{id}', [AuthController::class, 'destroy']); // Eliminar usuario
 });
 
 Route::middleware('auth:sanctum')->group(function () {
