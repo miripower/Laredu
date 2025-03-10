@@ -22,7 +22,6 @@ El backend expone una API REST robusta y segura usando **Laravel Sanctum**, mien
 | Vite                    | Bundler rápido para el frontend |
 | MySQL                   | Base de datos relacional        |
 | Laravel Sanctum         | Autenticación vía API Tokens    |
-| FullCalendar.js         | Gestión de eventos y calendario |
 
 ---
 
