@@ -130,23 +130,6 @@ laredu/
 
 ---
 
-## 📦 Seeders y Datos de Prueba
-
-Para poblar la base de datos inicial:
-
-```bash
-php artisan migrate:fresh --seed
-```
-
-Seeders incluidos:
-
-- RolesTableSeeder
-- UsersTableSeeder
-- CoursesTableSeeder
-- (y otros para asignaturas, tareas, etc.)
-
----
-
 ## 🛠️ Comandos de Uso Frecuente
 
 ### Backend
