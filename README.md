@@ -1,146 +1,184 @@
-# Laredu - Plataforma Escolar con Laravel 11 y React 19
 
-## Introducción
-Laredu es una plataforma escolar desarrollada con **Laravel 11** y **React 19** que permite gestionar usuarios, cursos, asignaturas, evaluaciones, tareas, asistencia, eventos del calendario, mensajería interna, roles y permisos.
+# 📚 Laredu - Plataforma Escolar Completa
 
-El objetivo es construir una **API REST** robusta y segura, junto con un **frontend moderno y responsivo**, siguiendo buenas prácticas de desarrollo.
-
-### Características principales:
-- **Registro e inicio de sesión seguro** con Laravel Sanctum.
-- **Administración de cursos y asignaturas** para estudiantes y docentes.
-- **Creación y gestión de tareas** con calificaciones.
-- **Gestor de eventos del calendario** con FullCalendar.js.
-- **Mensajería interna** entre usuarios.
-- **Asignación y gestión de roles y permisos**.
+Sistema de gestión educativa desarrollado con **Laravel 11** para el backend y **React 19** + **Vite** + **Tailwind CSS 4** para el frontend.
 
 ---
 
-## Tecnologías Utilizadas
+## 🌐 Descripción General
 
-| Tecnología        | Uso en el Proyecto                |
-|--------------------|---------------------------------|
-| Laravel 11        | Backend y API REST             |
-| React 19 + TS     | Frontend dinámico              |
-| MySQL            | Base de datos relacional       |
-| Laravel Sanctum  | Autenticación API segura      |
-| Tailwind CSS 4   | Diseño moderno y responsivo   |
-| FullCalendar.js  | Gestión de eventos y calendario |
+**Laredu** es una plataforma escolar diseñada para facilitar la gestión integral de usuarios, cursos, asignaturas, tareas, evaluaciones, asistencia, eventos y comunicación entre los diferentes actores educativos.  
+El backend expone una API REST robusta y segura usando **Laravel Sanctum**, mientras que el frontend es una SPA moderna, rápida y responsive.
 
 ---
 
-## Instalación y Configuración
+## ⚙️ Tecnologías Utilizadas
 
-### **Requisitos previos:**
-- PHP 8.2 o superior
-- Composer
-- MySQL 8 o MariaDB
-- Node.js y npm
-- (Opcional) Laragon en Windows
-
-### **Instalar Laravel 11**
-Ejecuta los siguientes comandos:
-```sh
-# Crear el proyecto en la carpeta "backend"
-composer create-project laravel/laravel backend
-
-# Moverse a la carpeta del proyecto
-cd backend
-
-# Iniciar el servidor de desarrollo
-php artisan serve
-```
-Si todo está correcto, deberías ver:
-```
-Application running at http://127.0.0.1:8000
-```
-
-### **Configurar la Base de Datos**
-Edita el archivo `.env` para configurar la base de datos:
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=laredu
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-> **Nota:** Si usas Laragon, XAMPP o WAMP, la contraseña puede estar vacía.
+| Tecnología               | Uso en el Proyecto              |
+|-------------------------|---------------------------------|
+| Laravel 11              | Backend y API REST              |
+| React 19 + TypeScript   | Frontend dinámico               |
+| Tailwind CSS 4          | Estilos modernos y responsivos  |
+| Vite                    | Bundler rápido para el frontend |
+| MySQL                   | Base de datos relacional        |
+| Laravel Sanctum         | Autenticación vía API Tokens    |
+| FullCalendar.js         | Gestión de eventos y calendario |
 
 ---
 
-## Definición de la Base de Datos
+## 🏗️ Estructura del Proyecto
 
-Laredu maneja más de **20 tablas** para gestionar cursos, usuarios, asignaturas, evaluaciones, asistencia, eventos, permisos, logs y más.
-
-### **Estructura de Tablas**
-
-#### 1. **Gestión de Usuarios y Roles**
-| Tabla        | Descripción |
-|-------------|-------------|
-| users       | Almacena información de usuarios. |
-| roles       | Define roles como admin, profesor, estudiante. |
-| user_roles  | Relación entre usuarios y roles. |
-
-#### 2. **Gestión Académica**
-| Tabla        | Descripción |
-|-------------|-------------|
-| courses     | Cursos académicos. |
-| subjects    | Asignaturas dentro de un curso. |
-| course_user | Relación muchos a muchos entre cursos y usuarios. |
-
-#### 3. **Evaluaciones y Entregas**
-| Tabla       | Descripción |
-|------------|-------------|
-| assignments | Tareas y exámenes creados por profesores. |
-| submissions | Registra las entregas de tareas. |
-| grades      | Almacena calificaciones. |
-
-#### 4. **Gestión de Horarios y Asistencia**
-| Tabla            | Descripción |
-|-----------------|-------------|
-| calendar_events | Eventos del calendario. |
-| attendance      | Registro de asistencia. |
-
-#### 5. **Sistema de Permisos**
-| Tabla            | Descripción |
-|-----------------|-------------|
-| permissions     | Lista de permisos. |
-| role_permissions | Relación entre roles y permisos. |
-
-#### 6. **Comunicación y Notificaciones**
-| Tabla       | Descripción |
-|------------|-------------|
-| messages   | Mensajes privados entre usuarios. |
-| notifications | Notificaciones del sistema. |
-
-#### 7. **Auditoría y Registro de Errores**
-| Tabla          | Descripción |
-|--------------|-------------|
-| logs         | Registro de eventos del sistema. |
-| activity_logs | Guarda cambios en la plataforma. |
+```
+laredu/
+├── backend/        # Laravel 11 (API REST)
+└── frontend/       # React 19 + Vite + Tailwind CSS 4
+```
 
 ---
 
-## Creación de Migraciones en Laravel 11
-Para generar las tablas, ejecuta:
-```sh
-php artisan migrate
-```
-Para generar datos de ejemplo, ejecuta:
-```sh
-php artisan db:seed
-```
-O descarga e importa el archivo Laredu.sql en backend/database/laredu.sql
+## 🚀 Instalación y Puesta en Marcha
+
+### Backend (Laravel 11)
+
+1. **Requisitos previos**:
+   - PHP >= 8.2
+   - Composer
+   - MySQL 8 / MariaDB
+   - Node.js + npm (para compilar el frontend)
+
+2. **Pasos de instalación**:
+
+   ```bash
+   cd backend
+   composer install
+   cp .env.example .env
+   php artisan key:generate
+   php artisan migrate --seed
+   php artisan serve
+   ```
+
+3. **Configuración base de datos** (.env):
+
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=laredu
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+4. **Autenticación**:
+   - Laravel Sanctum para autenticación con API Tokens.
+   - Endpoints protegidos con `auth:sanctum`.
 
 ---
 
-## Contribuciones
-Las contribuciones son bienvenidas. Si deseas colaborar, por favor sigue estos pasos:
-1. Realiza un **fork** del repositorio.
-2. Crea una rama (`git checkout -b feature-nueva-funcionalidad`).
-3. Realiza los cambios y confirma los commits (`git commit -m 'Agrega nueva funcionalidad'`).
-4. Sube los cambios (`git push origin feature-nueva-funcionalidad`).
-5. Abre un **pull request**.
+### Frontend (React 19 + Vite + Tailwind CSS 4)
+
+1. **Requisitos previos**:
+   - Node.js (versión 18 o 20)
+   - npm (versión 8+)
+
+2. **Pasos de instalación**:
+
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+
+3. **Configuración inicial**:
+   - Proyecto creado con `npm create vite@latest .`
+   - Framework seleccionado: React + TypeScript
+   - Tailwind CSS 4 instalado y configurado vía plugin de Vite.
+
+4. **Estructura básica**:
+
+   ```
+   frontend/
+   ├── src/
+   │   ├── components/    # Componentes UI (Login, Cursos, Asignaturas, etc.)
+   │   ├── App.tsx        # App principal
+   │   └── index.css      # Estilos globales con Tailwind CSS
+   ├── vite.config.ts     # Configuración de Vite
+   └── package.json
+   ```
+
+---
+
+## 🔑 Funcionalidades Clave
+
+### Backend (Laravel)
+
+- Gestión de usuarios, roles y permisos.
+- CRUD de cursos, asignaturas, tareas, entregas y eventos.
+- Sistema de mensajería interna y notificaciones.
+- Control de asistencia y evaluaciones.
+- Autenticación con Laravel Sanctum.
+- Seeders para crear datos iniciales de prueba.
+- Controladores CRUD listos para la API REST.
+
+### Frontend (React)
+
+- Login y registro de usuarios.
+- Listado de cursos, asignaturas y tareas.
+- Entrega de tareas (submissions).
+- Mensajería interna y notificaciones.
+- Componente de logout con eliminación de token.
+- Llamadas API usando `fetch` con autenticación Bearer Token.
+- Diseño responsive con Tailwind CSS 4.
+
+---
+
+## 📦 Seeders y Datos de Prueba
+
+Para poblar la base de datos inicial:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+Seeders incluidos:
+
+- RolesTableSeeder
+- UsersTableSeeder
+- CoursesTableSeeder
+- (y otros para asignaturas, tareas, etc.)
+
+---
+
+## 🛠️ Comandos de Uso Frecuente
+
+### Backend
+
+```bash
+php artisan serve        # Inicia servidor Laravel
+php artisan migrate      # Ejecuta migraciones
+php artisan db:seed      # Rellena datos de prueba
+```
+
+### Frontend
+
+```bash
+npm run dev              # Inicia servidor de desarrollo React + Vite
+npm run build            # Genera build de producción
+```
+
+---
+
+## 📝 Endpoints de la API
+
+| Método | Endpoint             | Descripción              |
+|--------|----------------------|--------------------------|
+| POST   | /api/register        | Registro de usuario      |
+| POST   | /api/login           | Login de usuario         |
+| POST   | /api/logout          | Cierre de sesión         |
+| GET    | /api/me              | Obtener usuario logueado |
+| GET    | /api/courses         | Listar cursos            |
+| GET    | /api/subjects        | Listar asignaturas       |
+| GET    | /api/assignments     | Listar tareas            |
+| GET    | /api/submissions     | Listar entregas          |
+| POST   | /api/messages        | Enviar mensaje privado   |
 
 ---
